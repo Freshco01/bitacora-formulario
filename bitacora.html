@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bitácora de Solicitudes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    form, table {
+      max-width: 1000px;
+      margin: auto;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 4px 0 12px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 40px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 6px;
+      text-align: left;
+    }
+    th {
+      background-color: #1976d2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Formulario de Solicitud</h2>
+
+<form id="formulario">
+  <label>Nombre del solicitante:</label>
+  <input type="text" id="nombre" required>
+
+  <label>Área/Departamento:</label>
+  <input type="text" id="area" required>
+
+  <label>Fecha de solicitud:</label>
+  <input type="date" id="fecha" required>
+
+  <label>Nombre del producto:</label>
+  <input type="text" id="producto" required>
+
+  <label>Modificación de producto:</label>
+  <input type="text" id="modificacion">
+
+  <label>Presentación:</label>
+  <input type="text" id="presentacion">
+
+  <label>Clave SAT:</label>
+  <input type="text" id="claveSAT">
+
+  <label>Tipo de operación:</label>
+  <input type="text" id="tipoOperacion">
+
+  <label>Información adicional:</label>
+  <textarea id="infoAdicional" rows="3"></textarea>
+
+  <button type="submit">Agregar a la bitácora</button>
+</form>
+
+<h2>Bitácora</h2>
+<table id="bitacora">
+  <thead>
+    <tr>
+      <th>Solicitante</th>
+      <th>Área</th>
+      <th>Fecha</th>
+      <th>Producto</th>
+      <th>Modificación</th>
+      <th>Presentación</th>
+      <th>Clave SAT</th>
+      <th>Tipo Operación</th>
+      <th>Información adicional</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+  const form = document.getElementById('formulario');
+  const tabla = document.getElementById('bitacora').querySelector('tbody');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const datos = [
+      document.getElementById('nombre').value,
+      document.getElementById('area').value,
+      document.getElementById('fecha').value,
+      document.getElementById('producto').value,
+      document.getElementById('modificacion').value,
+      document.getElementById('presentacion').value,
+      document.getElementById('claveSAT').value,
+      document.getElementById('tipoOperacion').value,
+      document.getElementById('infoAdicional').value
+    ];
+
+    const fila = document.createElement('tr');
+    datos.forEach(dato => {
+      const td = document.createElement('td');
+      td.textContent = dato;
+      fila.appendChild(td);
+    });
+
+    tabla.appendChild(fila);
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
